@@ -7,12 +7,18 @@
 //
 
 import UIKit
+import Alamofire
+import Foundation
 
 class ViewController: UIViewController {
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+       
+        WebServiceModel.sharedInstance.getGenericName("001530043028")
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,4 +28,3 @@ class ViewController: UIViewController {
 
 
 }
-

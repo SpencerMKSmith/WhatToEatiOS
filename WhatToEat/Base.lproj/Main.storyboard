@@ -78,14 +78,17 @@
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="QnJ-gX-PgC">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="QnJ-gX-PgC">
                                         <rect key="frame" x="0.0" y="92" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QnJ-gX-PgC" id="hmb-IH-Iij">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="vzH-Ba-89f" kind="push" id="sra-zJ-2Wb"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -97,6 +100,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1LD-Jt-hGu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="588" y="749"/>
+        </scene>
+        <!--Recipe Info View Controller-->
+        <scene sceneID="hc5-Hi-EOj">
+            <objects>
+                <viewController id="vzH-Ba-89f" customClass="RecipeInfoViewController" customModule="WhatToEat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rlv-cr-DhW"/>
+                        <viewControllerLayoutGuide type="bottom" id="Mgx-ip-dGO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xh9-MA-uYS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ADK-tN-HOS"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="icX-ea-NLP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1145" y="749"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3jh-CN-O0d">

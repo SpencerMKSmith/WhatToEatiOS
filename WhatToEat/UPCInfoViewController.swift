@@ -16,29 +16,12 @@ class UPCInfoViewController: UIViewController {
     
     var mBarCode : String!
     var mJSONArray : NSArray?
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let theUPC = mBarCode
-        {
-            let theURLAsString = "http://pod.opendatasoft.com/api/records/1.0/search?dataset=pod_gtin&q=gtin_cd%3D%22" + theUPC + "%22&facet=gpc_s_nm&facet=brand_nm&facet=owner_nm&facet=gln_nm&facet=prefix_nm"
-            let theURL = NSURL(string: theURLAsString)
-            let theURLSession = NSURLSession.sharedSession()
-            let theJSONQuery = theURLSession.dataTaskWithURL(theURL!, completionHandler: {data, response, error -> Void in
-                
-                if(error != nil)
-                {
-                    print(error!.localizedDescription)
-                }
-                
-                self.parseThisData(data!)
-
-            })
-            
-            theJSONQuery.resume()
-        }
+        WebServiceModel.sharedInstance.getBarCodeInfo(mBarCode, caller: self)
+        
         // Do any additional setup after loading the view.
     }
     
@@ -52,11 +35,13 @@ class UPCInfoViewController: UIViewController {
             print("TESTTTTTTTT")
             print(theDictionary!["gtin_img"])
             print(theDictionary!["gtin_nm"])
-            mNameLabel.text = theDictionary!["gtin_nm"] as! String
+            dispatch_async(dispatch_get_main_queue()){
+                self.mNameLabel.text = (theDictionary!["gtin_nm"] as! String)
             
-            let url = NSURL(string: theDictionary!["gtin_img"] as! String)
-            let data = NSData(contentsOfURL:url!)
-            self.mImageView.image = UIImage(data: data!)
+                let url = NSURL(string: theDictionary!["gtin_img"] as! String)
+                let data = NSData(contentsOfURL:url!)
+                self.mImageView.image = UIImage(data: data!)
+            }
         } catch let error as NSError {print(error)}
     }
 

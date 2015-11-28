@@ -1,0 +1,51 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red16\green108\blue82;\red242\green242\blue242;\red60\green60\blue59;
+\red26\green96\blue164;\red162\green74\blue17;}
+\margl1440\margr1440\vieww12240\viewh8620\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 	WhatToEat Deliverable 1 Explaination\
+\
+
+\b\fs28 UI Walkthrough:
+\b0\fs24 \
+	This is a screen shot of my Story Board, as you can see, on start up the user is presented with a picture of a pantry, when the app is complete, the pantry will include the items that the user scans to put in it.  There are two options that a user can do from here, either scan a new item and add it to the pantry, or view recipes that correspond with the current items that you already have stored.  \
+\
+Scan:\
+	When I user clicks scan he is presented with a screen that looks like he is taking a picture, when a barcode is placed in front of the camera and the device recognizes it, the view will automatically be changed to a page where the user can view the info about the item with the option to save the item.\
+\
+Recipes:\
+	The user is presented with a table view with all recipes that he can make.  When a recipe is clicked on it will bring him to the complete recipe.\
+\
+
+\b\fs28 Class Diagram/MVC Architecture:
+\b0\fs24 \
+	As you can see, my class diagram is split into two boxes, the Data Models, and the ViewControllers.  This is to show the MVC architecture that my app will be designed around.  In my app I want as little data manipulation as possible to happen inside of the ViewControllers.  All setting, getting, and modifying of data to/from persistent storage as well as data stored in web services will be handled by separate classes that are just called by the ViewControllers.  NOTE: This is not a complete list of attributes nor functions of the ViewControllers but they are the functions and attributes that I see as most necessary for the given class.\
+\
+
+\b\fs28 Prototype:\
+	
+\b0\fs24 My prototype must be run on a physical device as it uses the physical camera.  As of yet, the only functionality that my app performs is the scan portion.  If you open up the scanner and hold a barcode in front of it, it is very likely that the app will show you a picture and the name associated with that barcode.  NOTE: The API that I use only has about 1,000,000 UPC barcodes stores, while that is a lot, many generic-brand items are not able to be found and as of yet such barcodes will cause the app to crash.\
+\
+I\'92m open to any feedback, thank you!\
+\
+-Spencer M.K. Smith\
+\
+https://api.semantics3.com/v1/
+\f1 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 products\cf4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 ?\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 q\cf4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 =\{\cf5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 "upc"\cf4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 :\cf6 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec6 "883974958450"\cf4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 , \cf5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 "fields"\cf4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 :[\cf6 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec6 "name"\cf4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 ,\cf6 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec6 "gtins"\cf4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 ]\}\
+}
