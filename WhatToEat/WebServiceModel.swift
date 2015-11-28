@@ -9,8 +9,6 @@
 //
 
 import Foundation
-import Alamofire
-
 
 class WebServiceModel {
     static let sharedInstance = WebServiceModel();
@@ -58,28 +56,85 @@ class WebServiceModel {
 
         }
     }
-    
-    func getGenericName(aBarCode: String!)
+
+    //This function will loop through each item in the pantry and query if there is a recipe
+    //      that takes the item as an ingredient.  Is will add each of these to the mRecipes array that lives
+    //      in the ViewController.
+    func getRecipes(caller: ViewController) //-> NSArray?
     {
-        let apiEndPoint = "products"
-        let apiUrl:String! = "https://api.semantics3.com/test/v1"
-        let consumerKey:String! = "SEM33F110084D3A93B9A05634EA52C710497"
-        let consumerSecret:String! = "NzkzMGZmYzQ5YjBmZjE2ZGYyMzY5Y2I3MWRjMmEzOTA"
-        
-        let params = ["api_key":"key"]
+        let thePantryItems = PantryData.sharedInstance.getPantryItems() as? [PantryItem]
+
+        for item in thePantryItems!
+        {
+            let fixedName = fixName(item.name!)
+            let theURLAsString = "http://food2fork.com/api/search?key=cc1044d1367fc612bad102715c897a5c&q=" + fixedName
+            let theURL = NSURL(string: theURLAsString)
+            let theURLSession = NSURLSession.sharedSession()
             
-        Alamofire.request(.GET, "\(apiUrl)/\(apiEndPoint)", parameters: params)
-                .authenticate(user: consumerKey, password: consumerSecret)
-                .responseJSON { response in
-                    print(response.request)
-                    print(response.response)
-                    print(response.data)
-                    print(response.result)
+            let theJSONQuery = theURLSession.dataTaskWithURL(theURL!, completionHandler: {data, response, error -> Void in
+                
+                if(error != nil)
+                {
+                    print(error!)
+                }
+                
+                do
+                {
+                    let theJSONResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
                     
-                    if let JSON = response.result.value {
-                        print("JSON: \(JSON)")
+                    if theJSONResult.count > 0
+                    {
+                        let theJSONArray = theJSONResult["recipes"] as? [NSDictionary]
+                        for var i = 0; i < theJSONArray!.count; i++
+                        {
+                            let theRecipe = theJSONArray![i]
+                            caller.mRecipes.append(theRecipe)
+                        }
                     }
+                } catch let error as NSError {
+                    print(error)
+                }
+            })
+            theJSONQuery.resume()
+        }
+    }
+    
+    func getRecipeByID(recipeId: String, sendTo: RecipeInfoViewController)
+    {
+        let theURLAsString = "http://food2fork.com/api/search?key=cc1044d1367fc612bad102715c897a5c&rId=recipeId"
+        let theURL = NSURL(string: theURLAsString)
+        let theURLSession = NSURLSession.sharedSession()
+        
+        let theJSONQuery = theURLSession.dataTaskWithURL(theURL!, completionHandler: {data, response, error -> Void in
+            
+            if(error != nil)
+            {
+                print(error!)
             }
+            
+            do
+            {
+                let theJSONResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+                
+                if theJSONResult.count > 0
+                {
+                    let theRecipeDictionary = theJSONResult["recipe"] as? NSDictionary
+                    sendTo.setRecipeInfo(theRecipeDictionary!)
+                }
+            } catch let error as NSError {
+                print(error)
+            }
+        })
+        theJSONQuery.resume()
+    }
+
+    
+    }
+
+    func fixName(name: String) -> String
+    {
+        let returnString = name.stringByReplacingOccurrencesOfString(" ", withString:"%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        return returnString
     }
 
 }

@@ -11,6 +11,8 @@ import Foundation
 
 class ViewController: UIViewController {
     
+    var mRecipes: [NSDictionary] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -30,6 +32,8 @@ class ViewController: UIViewController {
             imageView.frame = CGRect(x: coordinates.x, y: coordinates.y, width:50, height:50)
             view.addSubview(imageView)
         }
+        
+        WebServiceModel.sharedInstance.getRecipes(self) //Stores the recipes in mRecipes to pass to the table view when clicked on by user
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,13 +62,14 @@ class ViewController: UIViewController {
         }
     }
     
-    //DEBUGGING
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-        if let touch = touches.first as UITouch?
+        if segue.identifier == "toRecipeTableSegue"
         {
-            print(touch.locationInView(self.view))
+            if let nextViewController: RecipesTableViewController = segue.destinationViewController as? RecipesTableViewController
+            {
+                nextViewController.mRecipes = mRecipes
+            }
         }
     }
-
 }

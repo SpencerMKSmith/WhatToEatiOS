@@ -10,6 +10,11 @@ import UIKit
 
 class RecipeInfoViewController: UIViewController {
 
+    var mIngredients: [String] = []
+    
+    @IBOutlet weak var mImageView: UIImageView!
+    @IBOutlet weak var mTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,6 +26,14 @@ class RecipeInfoViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
+    func setRecipeInfo(recipeData: NSDictionary)
+    {
+        mIngredients = recipeData["ingredients"]
+        self.title = recipeData["title"]
+        
+    }
 
     /*
     // MARK: - Navigation

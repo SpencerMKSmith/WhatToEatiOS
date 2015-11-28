@@ -59,8 +59,8 @@ class UPCInfoViewController: UIViewController {
     {
         if !PantryData.sharedInstance.insertPantryItem(mItemName, image: mImageData)
         {
-            let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+            let alert = UIAlertController(title: "Duplicate", message: "This item is already in your pantry.", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }
         navigationController?.popToRootViewControllerAnimated(true)
