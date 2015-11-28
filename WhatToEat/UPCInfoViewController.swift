@@ -13,6 +13,11 @@ class UPCInfoViewController: UIViewController {
 
     @IBOutlet weak var mImageView: UIImageView!
     @IBOutlet weak var mNameLabel: UILabel!
+    @IBOutlet weak var mAddItemButton: UIButton!
+    
+    var mItemName: String!
+    var mImageData: NSData!
+    var mItemNameGeneric: String!
     
     var mBarCode : String!
     var mJSONArray : NSArray?
@@ -21,28 +26,26 @@ class UPCInfoViewController: UIViewController {
         super.viewDidLoad()
 
         WebServiceModel.sharedInstance.getBarCodeInfo(mBarCode, caller: self)
-        
-        // Do any additional setup after loading the view.
     }
     
-    func parseThisData(data: NSData)
+    func showData(name: String?, image: String?)
     {
-        do{
-            let theJSONResult = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
-            
-            mJSONArray = theJSONResult["records"] as? NSArray
-            let theDictionary = mJSONArray![0]["fields"] as? NSDictionary
-            print("TESTTTTTTTT")
-            print(theDictionary!["gtin_img"])
-            print(theDictionary!["gtin_nm"])
+        if let theName = name, let theImage = image
+        {
             dispatch_async(dispatch_get_main_queue()){
-                self.mNameLabel.text = (theDictionary!["gtin_nm"] as! String)
-            
-                let url = NSURL(string: theDictionary!["gtin_img"] as! String)
-                let data = NSData(contentsOfURL:url!)
-                self.mImageView.image = UIImage(data: data!)
+                self.mNameLabel.text = theName
+                let imageData = NSData(contentsOfURL : NSURL(string: theImage)!)
+                self.mImageView.image = UIImage(data: imageData!)
+                
+                self.mItemName = theName
+                self.mImageData = imageData
+                self.mAddItemButton.hidden = false
             }
-        } catch let error as NSError {print(error)}
+        } else {
+            dispatch_async(dispatch_get_main_queue()){
+                self.mNameLabel.text = "Product not found in database, please try a different product."
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,7 +53,18 @@ class UPCInfoViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
 
+    @IBAction func onAddItemButtonClick(sender: UIButton)
+    {
+        if !PantryData.sharedInstance.insertPantryItem(mItemName, image: mImageData)
+        {
+            let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+        navigationController?.popToRootViewControllerAnimated(true)
+    }
     /*
     // MARK: - Navigation
 

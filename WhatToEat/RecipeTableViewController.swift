@@ -14,6 +14,10 @@ class RecipesViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        for item in PantryData.sharedInstance.getPantryItems()!
+        {
+            print(item.name)
+        }
     }
 
     override func didReceiveMemoryWarning() {

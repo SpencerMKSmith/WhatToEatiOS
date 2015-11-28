@@ -160,7 +160,7 @@
             </objects>
             <point key="canvasLocation" x="588" y="-52"/>
         </scene>
-        <!--Info View Controller-->
+        <!--Item Info-->
         <scene sceneID="F21-2J-nt6">
             <objects>
                 <viewController id="q5T-s1-lN3" customClass="UPCInfoViewController" customModule="WhatToEat" customModuleProvider="target" sceneMemberID="viewController">
@@ -181,24 +181,40 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJd-3e-RmS">
-                                <rect key="frame" x="120" y="296" width="159" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJd-3e-RmS">
+                                <rect key="frame" x="120" y="291" width="167" height="75"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2rp-71-6DM">
+                                <rect key="frame" x="83" y="469" width="153" height="36"/>
+                                <color key="backgroundColor" red="0.2610663969" green="0.4128867081" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Add Item to Pantry">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onAddItemButtonClick:" destination="q5T-s1-lN3" eventType="touchUpInside" id="1y1-MJ-OAZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Kfo-oD-n7Q"/>
+                    <navigationItem key="navigationItem" title="Item Info" id="Kfo-oD-n7Q"/>
                     <connections>
+                        <outlet property="mAddItemButton" destination="2rp-71-6DM" id="Rqj-gQ-BHp"/>
                         <outlet property="mImageView" destination="cWN-Xk-WH0" id="3Gq-FQ-HUK"/>
                         <outlet property="mNameLabel" destination="ZJd-3e-RmS" id="hnN-Sg-90y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZDB-x9-5vj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1145" y="-52"/>
+            <point key="canvasLocation" x="1139" y="-52"/>
         </scene>
     </scenes>
     <resources>

@@ -30,13 +30,11 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
-        //mLabel = UILabel(frame: CGRectMake(20,20,300,30))
-        //mLabel.textAlignment = NSTextAlignment.Center
-        //mLabel.text = "Test"
-
+        
         do{
-            let inputDevice = try AVCaptureDeviceInput(device: captureDevice) as? AVCaptureDeviceInput
+            let inputDevice = try AVCaptureDeviceInput(device: captureDevice) as AVCaptureDeviceInput?
             
             if let inp = inputDevice {
                 session.addInput(inp)
@@ -56,15 +54,11 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
             output.metadataObjectTypes = output.availableMetadataObjectTypes
             print(output.availableMetadataObjectTypes)
             output.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
-
+            
             session.startRunning()
         } catch let error as NSError {
             print(error)
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -102,14 +96,6 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
             let metaData = data as! AVMetadataObject
             let transformed = previewLayer?.transformedMetadataObjectForMetadataObject(metaData) as? AVMetadataMachineReadableCodeObject
             if let unwraped = transformed {
-                identifiedBorder?.frame = unwraped.bounds
-                identifiedBorder?.hidden = false
-                let identifiedCorners = self.translatePoints(unwraped.corners, fromView: self.view, toView: self.identifiedBorder!)
-                identifiedBorder?.drawBorder(identifiedCorners)
-                self.identifiedBorder?.hidden = false
-                self.startTimer()
-                print(unwraped.stringValue)
-                //identifiedBorder!.mLabel.text = unwraped.stringValue
                 mFoundBarCode = unwraped.stringValue
                 performSegueWithIdentifier("ScanToUPCInfoSegue", sender: nil)
             }
