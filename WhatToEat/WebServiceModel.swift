@@ -60,18 +60,18 @@ class WebServiceModel {
     //This function will loop through each item in the pantry and query if there is a recipe
     //      that takes the item as an ingredient.  Is will add each of these to the mRecipes array that lives
     //      in the ViewController.
-    func getRecipes(caller: ViewController) //-> NSArray?
+    func getRecipes(caller: ViewController)
     {
         let thePantryItems = PantryData.sharedInstance.getPantryItems() as? [PantryItem]
 
-        for item in thePantryItems!
+        for (index, item) in (thePantryItems?.enumerate())!
         {
             let fixedName = fixName(item.name!)
             let theURLAsString = "http://food2fork.com/api/search?key=cc1044d1367fc612bad102715c897a5c&q=" + fixedName
             let theURL = NSURL(string: theURLAsString)
             let theURLSession = NSURLSession.sharedSession()
             
-            let theJSONQuery = theURLSession.dataTaskWithURL(theURL!, completionHandler: {data, response, error -> Void in
+            let theJSONQuery = theURLSession.dataTaskWithURL(theURL!, completionHandler: { data, response, error -> Void in
                 
                 if(error != nil)
                 {
@@ -85,7 +85,7 @@ class WebServiceModel {
                     if theJSONResult.count > 0
                     {
                         let theJSONArray = theJSONResult["recipes"] as? [NSDictionary]
-                        for var i = 0; i < theJSONArray!.count; i++
+                        for var i = 0; (i < theJSONArray!.count) && (i < 10); i++
                         {
                             let theRecipe = theJSONArray![i]
                             caller.mRecipes.append(theRecipe)
@@ -94,6 +94,11 @@ class WebServiceModel {
                 } catch let error as NSError {
                     print(error)
                 }
+                
+                if index == (thePantryItems?.count)! - 1
+                {
+                    caller.enableRecipeButton()
+                }
             })
             theJSONQuery.resume()
         }
@@ -101,7 +106,7 @@ class WebServiceModel {
     
     func getRecipeByID(recipeId: String, sendTo: RecipeInfoViewController)
     {
-        let theURLAsString = "http://food2fork.com/api/search?key=cc1044d1367fc612bad102715c897a5c&rId=recipeId"
+        let theURLAsString = "http://food2fork.com/api/get?key=cc1044d1367fc612bad102715c897a5c&rId=" + recipeId
         let theURL = NSURL(string: theURLAsString)
         let theURLSession = NSURLSession.sharedSession()
         
@@ -137,4 +142,4 @@ class WebServiceModel {
         return returnString
     }
 
-}
+

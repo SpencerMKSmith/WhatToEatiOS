@@ -12,6 +12,7 @@ import Foundation
 class ViewController: UIViewController {
     
     var mRecipes: [NSDictionary] = []
+    @IBOutlet weak var mRecipesButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +33,7 @@ class ViewController: UIViewController {
             imageView.frame = CGRect(x: coordinates.x, y: coordinates.y, width:50, height:50)
             view.addSubview(imageView)
         }
-        
+        mRecipes.removeAll() //Reset the recipes so they aren't duplicated
         WebServiceModel.sharedInstance.getRecipes(self) //Stores the recipes in mRecipes to pass to the table view when clicked on by user
     }
 
@@ -71,5 +72,13 @@ class ViewController: UIViewController {
                 nextViewController.mRecipes = mRecipes
             }
         }
+    }
+    
+    func enableRecipeButton()
+    {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.mRecipesButton.enabled = true
+            self.mRecipesButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        })
     }
 }

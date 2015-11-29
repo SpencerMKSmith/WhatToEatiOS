@@ -12,10 +12,11 @@ import UIKit
 
 class PantryData {
     static let sharedInstance = PantryData()
+    var theUIImage = UIImage(named: "emptyBox.jpg")
     
     //Will insert a new pantry item into the pantry.  If the item is inserted it will
     //  return true, if the item has already been inserted it will return false.
-    func insertPantryItem(name: String, image: NSData) -> Bool
+    func insertPantryItem(name: String, image: NSData?) -> Bool
     {
         if !pantryItemAlreadyInserted(name)
         {
@@ -24,8 +25,13 @@ class PantryData {
         
             let theNewItem = NSEntityDescription.insertNewObjectForEntityForName("PantryItem", inManagedObjectContext: managedContext) as! PantryItem
             theNewItem.name = name
-            theNewItem.image = image
-        
+            if let imageData = image
+            {
+                theNewItem.image = imageData
+            } else {
+                theNewItem.image = UIImageJPEGRepresentation(theUIImage!, 100)
+            }
+            
             do
             {
                 try managedContext.save()

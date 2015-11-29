@@ -15,8 +15,8 @@ class UPCInfoViewController: UIViewController {
     @IBOutlet weak var mNameLabel: UILabel!
     @IBOutlet weak var mAddItemButton: UIButton!
     
-    var mItemName: String!
-    var mImageData: NSData!
+    var mItemName: String?
+    var mImageData: NSData?
     var mItemNameGeneric: String!
     
     var mBarCode : String!
@@ -35,10 +35,13 @@ class UPCInfoViewController: UIViewController {
             dispatch_async(dispatch_get_main_queue()){
                 self.mNameLabel.text = theName
                 let imageData = NSData(contentsOfURL : NSURL(string: theImage)!)
-                self.mImageView.image = UIImage(data: imageData!)
+                if imageData != nil
+                {
+                    self.mImageView.image = UIImage(data: imageData!)
+                    self.mImageData = imageData
+                }
                 
                 self.mItemName = theName
-                self.mImageData = imageData
                 self.mAddItemButton.hidden = false
             }
         } else {
@@ -57,7 +60,7 @@ class UPCInfoViewController: UIViewController {
 
     @IBAction func onAddItemButtonClick(sender: UIButton)
     {
-        if !PantryData.sharedInstance.insertPantryItem(mItemName, image: mImageData)
+        if !PantryData.sharedInstance.insertPantryItem(mItemName!, image: mImageData)
         {
             let alert = UIAlertController(title: "Duplicate", message: "This item is already in your pantry.", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))

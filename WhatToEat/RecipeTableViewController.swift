@@ -41,6 +41,7 @@ class RecipesTableViewController: UIViewController, UITableViewDelegate {
 
         cell.textLabel?.text = recipeName
         cell.imageView?.image = UIImage(data: imageData!)
+        
         return cell
     }
     
@@ -52,9 +53,11 @@ class RecipesTableViewController: UIViewController, UITableViewDelegate {
             if let recipeInfoViewController: RecipeInfoViewController = segue.destinationViewController as? RecipeInfoViewController
             {
                 let selectedIndex: NSIndexPath = self.mTableView.indexPathForCell( sender as! UITableViewCell )!
+                let selectedCell = self.mTableView.cellForRowAtIndexPath(selectedIndex)
                 let theRecipe = mRecipes![selectedIndex.row] as! NSDictionary
-                let theRecipeId = theRecipe["recipe_id"]
-                recipeInfoViewController.mRecipeData
+                let theRecipeId = theRecipe["recipe_id"] as! String
+                WebServiceModel.sharedInstance.getRecipeByID(theRecipeId, sendTo: recipeInfoViewController)
+                recipeInfoViewController.mImage = selectedCell?.imageView?.image //Set the image of the next view to what image was showing in the table view
             }
         }
     }

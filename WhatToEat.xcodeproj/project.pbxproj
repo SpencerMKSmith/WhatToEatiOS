@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C805AF831C0A779800C4A759 /* emptyBox.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C805AF821C0A779800C4A759 /* emptyBox.jpg */; };
 		C806940D1BF7AAFE00C095A1 /* DiscoveredBarCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C806940C1BF7AAFE00C095A1 /* DiscoveredBarCodeView.swift */; };
+		C808A47C1C0ACE22001F1CE8 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C808A47B1C0ACE22001F1CE8 /* WebViewController.swift */; };
 		C80EDFAA1C0A224500FD7E17 /* PantryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80EDFA91C0A224500FD7E17 /* PantryData.swift */; };
 		C80FBFE41BFB04530037C5DC /* RecipeInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80FBFE31BFB04530037C5DC /* RecipeInfoViewController.swift */; };
 		C811C0E91C06459800AC034C /* WebServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C811C0E81C06459800AC034C /* WebServiceModel.swift */; };
@@ -40,7 +42,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C805AF821C0A779800C4A759 /* emptyBox.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = emptyBox.jpg; sourceTree = "<group>"; };
 		C806940C1BF7AAFE00C095A1 /* DiscoveredBarCodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveredBarCodeView.swift; sourceTree = "<group>"; };
+		C808A47B1C0ACE22001F1CE8 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		C80EDFA91C0A224500FD7E17 /* PantryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PantryData.swift; sourceTree = "<group>"; };
 		C80FBFE31BFB04530037C5DC /* RecipeInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeInfoViewController.swift; sourceTree = "<group>"; };
 		C811C0E81C06459800AC034C /* WebServiceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceModel.swift; sourceTree = "<group>"; };
@@ -93,6 +97,7 @@
 				C81D15351BF80EF000727315 /* UPCInfoViewController.swift */,
 				C80FBFE31BFB04530037C5DC /* RecipeInfoViewController.swift */,
 				C8A6A11B1BF76D6D00251994 /* ViewController.swift */,
+				C808A47B1C0ACE22001F1CE8 /* WebViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -131,6 +136,7 @@
 		C8A6A12E1BF76E5300251994 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C805AF821C0A779800C4A759 /* emptyBox.jpg */,
 				C8A6A1311BF770F000251994 /* EmptyPantry.jpg */,
 				C8A6A12F1BF76E6500251994 /* SMacKS Software Design Logo.png */,
 			);
@@ -200,6 +206,7 @@
 				C8A6A1321BF770F000251994 /* EmptyPantry.jpg in Resources */,
 				C8A6A1271BF76D6D00251994 /* LaunchScreen.storyboard in Resources */,
 				C8A6A1241BF76D6D00251994 /* Assets.xcassets in Resources */,
+				C805AF831C0A779800C4A759 /* emptyBox.jpg in Resources */,
 				C8A6A1301BF76E6500251994 /* SMacKS Software Design Logo.png in Resources */,
 				C8A6A11F1BF76D6D00251994 /* Main.storyboard in Resources */,
 			);
@@ -223,6 +230,7 @@
 				C811C0EC1C0649CA00AC034C /* PantryItem+CoreDataProperties.swift in Sources */,
 				C8A6A1221BF76D6D00251994 /* WhatToEat.xcdatamodeld in Sources */,
 				C8A6A1361BF772D800251994 /* RecipeTableViewController.swift in Sources */,
+				C808A47C1C0ACE22001F1CE8 /* WebViewController.swift in Sources */,
 				C8A6A1341BF772CA00251994 /* ScanViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
