@@ -2,6 +2,13 @@
 //  RecipeInfoViewController.swift
 //  WhatToEat
 //
+//  This view controller will show a big picture of the dish that is to be made, and a list
+//      of all of the ingredients that are needed to make it.  Also, the first element in the
+//      table view is a button that will take the user to the full recipe showing how to make
+//      the dish.
+//
+//  TODO: Improve the UI, possibly add scrolling to the view and make the button look better.
+//
 //  Created by Spencer Smith on 11/16/15.
 //  Copyright © 2015 Spencer Smith. All rights reserved.
 //

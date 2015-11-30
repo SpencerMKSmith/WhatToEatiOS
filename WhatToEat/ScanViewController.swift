@@ -2,6 +2,13 @@
 //  ScanViewController.swift
 //  WhatToEat
 //
+//  This View Controller is in charge of using the camera to read a barcode that
+//      the user presents and decode the barcode to recieve the EAN number from it
+//      and pass it onto the UPCInfoViewController.
+//
+//  TODO: Restructure how the capturing starts/stops to make it so the camera can restart 
+//        when the user returns to the view from the UPCInfo.
+//
 //  Created by Spencer Smith on 11/14/15.
 //  Copyright © 2015 Spencer Smith. All rights reserved.
 //

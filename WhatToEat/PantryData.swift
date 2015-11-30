@@ -2,6 +2,9 @@
 //  PantryData.swift
 //  WhatToEat
 //
+//  This is also a singleton class that takes care of all of the getting and inserting
+//      of items into the PantryData entity.
+//
 //  Created by Spencer Smith on 11/28/15.
 //  Copyright © 2015 Spencer Smith. All rights reserved.
 //

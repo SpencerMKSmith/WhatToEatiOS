@@ -2,7 +2,11 @@
 //  WebServiceModel.swift
 //  WhatToEat
 //
-//  This is a singleton class to handle all web service calls
+//  This is a singleton class to handle all web service calls.  All API calls that are to be made
+//      will utilize this class to request and retrieve the data and pass it accordingly back to the
+//      View Controller that requested it.
+//
+//  TODO: Improve async functionality, sometimes it has weird behavior
 //
 //  Created by Spencer Smith on 11/25/15.
 //  Copyright © 2015 Spencer Smith. All rights reserved.

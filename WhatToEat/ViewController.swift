@@ -2,6 +2,12 @@
 //  ViewController.swift
 //  WhatToEat
 //
+//  This is the main View Controller that appears when the app is started.  The main content of this page
+//      is the pantry where it will show the user what items have already been added
+//      to their pantry.
+//
+//     TODO: Add functionality to click on an item and see the name of it and also delete it
+//
 //  Created by Spencer Smith on 11/14/15.
 //  Copyright © 2015 Spencer Smith. All rights reserved.
 //
@@ -23,7 +29,7 @@ class ViewController: UIViewController {
     override func viewWillAppear(animated: Bool)
     {
         super.viewDidAppear(animated)
-
+        
         let PantryItems = PantryData.sharedInstance.getPantryItems() as! [PantryItem]
         for (index, theItem) in PantryItems.enumerate()
         {
@@ -33,6 +39,8 @@ class ViewController: UIViewController {
             imageView.frame = CGRect(x: coordinates.x, y: coordinates.y, width:50, height:50)
             view.addSubview(imageView)
         }
+        
+        self.disableRecipeButton() //This is to disable the Recipe button until the recipes have been loaded
         mRecipes.removeAll() //Reset the recipes so they aren't duplicated
         WebServiceModel.sharedInstance.getRecipes(self) //Stores the recipes in mRecipes to pass to the table view when clicked on by user
     }
@@ -74,11 +82,21 @@ class ViewController: UIViewController {
         }
     }
     
+    //This is to enable to Recipe button after all of the recipes have been loaded.
     func enableRecipeButton()
     {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.mRecipesButton.enabled = true
             self.mRecipesButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        })
+    }
+    
+    //This will disable the Recipe button when reloading the recipes
+    func disableRecipeButton()
+    {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.mRecipesButton.enabled = false
+            self.mRecipesButton.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
         })
     }
 }

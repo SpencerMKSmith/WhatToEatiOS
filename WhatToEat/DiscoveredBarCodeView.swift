@@ -16,7 +16,7 @@ class DiscoveredBarCodeView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.setMyView()
+        //self.setMyView()
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -34,15 +34,6 @@ class DiscoveredBarCodeView: UIView {
         }
         path.addLineToPoint(points.first!)
         borderLayer?.path = path.CGPath
-    }
-    
-    func setMyView() {
-        borderLayer = CAShapeLayer()
-        borderLayer?.strokeColor = UIColor.redColor().CGColor
-        borderLayer?.lineWidth = 2.0
-        borderLayer?.fillColor = UIColor.clearColor().CGColor
-        self.layer.addSublayer(borderLayer!)
-
     }
     
 }

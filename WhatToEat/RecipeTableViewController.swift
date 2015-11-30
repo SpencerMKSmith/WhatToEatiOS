@@ -2,6 +2,11 @@
 //  RecipesTableViewController.swift
 //  WhatToEat
 //
+//  This view controller controlls the table where the list of found recipes will appear.
+//
+//  TODO: Improve user experience.  When many items are loaded into the table the table will
+//        be very slow attempting to load all of the thumbnail pictures for the recipes.
+//
 //  Created by Spencer Smith on 11/14/15.
 //  Copyright © 2015 Spencer Smith. All rights reserved.
 //

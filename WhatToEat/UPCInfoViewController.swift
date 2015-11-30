@@ -2,6 +2,14 @@
 //  UPCInfoViewController.swift
 //  WhatToEat
 //
+//  This View Controller will take the barcode number that is passed to it from the
+//      scanner and uses a web service to get the product information that coresponds
+//      to the EAN number.
+//
+//  TODO: Figure out how to use OAuth authorization to be able to use the Semantics3.com API
+//        to get the general name of a product, whereas right now all I can get from the API
+//        is the name of the product.
+//
 //  Created by Spencer Smith on 11/14/15.
 //  Copyright © 2015 Spencer Smith. All rights reserved.
 //
