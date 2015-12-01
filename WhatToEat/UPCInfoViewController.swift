@@ -47,7 +47,7 @@ class UPCInfoViewController: UIViewController {
                 {
                     self.mImageView.image = UIImage(data: imageData!)
                     self.mImageData = imageData
-                }
+                } 
                 
                 self.mItemName = theName
                 self.mAddItemButton.hidden = false
@@ -75,6 +75,13 @@ class UPCInfoViewController: UIViewController {
             self.presentViewController(alert, animated: true, completion: nil)
         }
         navigationController?.popToRootViewControllerAnimated(true)
+    }
+    
+    func showNoInternetDialogue()
+    {
+        let alert = UIAlertController(title: "No Internet", message: "WARNING: I detect that you are not connected to the internet or you are connected to a network that doesn't support the webservice calls that I use.  Please connect to another network. \n (I usually tether to my phone)", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     /*
     // MARK: - Navigation

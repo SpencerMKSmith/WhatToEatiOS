@@ -99,4 +99,11 @@ class ViewController: UIViewController {
             self.mRecipesButton.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
         })
     }
+    
+    func showNoInternetDialogue()
+    {
+        let alert = UIAlertController(title: "No Internet", message: "WARNING: I detect that you are not connected to the internet or you are connected to a network that doesn't support the webservice calls that I use.  Please connect to another network. \n (I usually tether to my phone)", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
 }

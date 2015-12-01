@@ -51,6 +51,7 @@ class WebServiceModel {
                         }
                     }
                 } catch let error as NSError {
+                    caller.showNoInternetDialogue()
                     print(error)
                 }
                 
@@ -96,6 +97,7 @@ class WebServiceModel {
                         }
                     }
                 } catch let error as NSError {
+                    caller.showNoInternetDialogue()
                     print(error)
                 }
                 
@@ -131,14 +133,14 @@ class WebServiceModel {
                     sendTo.setRecipeInfo(theRecipeDictionary!)
                 }
             } catch let error as NSError {
+                sendTo.showNoInternetDialogue()
                 print(error)
             }
         })
         theJSONQuery.resume()
     }
-
     
-    }
+}
 
     func fixName(name: String) -> String
     {
